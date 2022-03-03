@@ -1,0 +1,32 @@
+Redis esnek bir yapısı olan, nosql türünde, büyük veri, mesaj kuyruklama gibi yetekenleri olan bir  nosql teknolojisidir.
+
+Temel özellikleri:
+1) Açılımı remote dictionary service
+2) Çıkış noktası hızdır
+3) key,value olarak çalışan nosql veritabanıdır
+4) Veriyi disk üzerine yazabilme özelliği var
+5) Desteklediği veri türleri ->string, hash, list, set, sorted set, hyperlog
+6) caching layer kullanımı sağlar. Cache tutma
+7) message broker gibi kullanılır
+8) redis alternatifleri  oracle, postgresql veya mysql değildir, bunlar gibi çalışmaz
+9) hızla büyüyen veriler için daha iyidir. twitter gibi
+10)Pub/sub için kullanılır (publis ve subscrib)
+
+Ölçeklendirme
+Persistance: RDB database, AOF file 
+Replication: Bir instance master gelir diğerleri slave gelir bunlar master kopyasıdır.slave default sadece okuma yapar.
+Failover: Manuel ve master-slave topolojisi,cluster topolojisi yapıyı kurtarma işlemi.
+
+Kurulum
+docker kurulumu yapıldıktan sonra docker üzerinde redisi ayağa kaldırılır.
+docker run --name redisapp -p 6379:6379 -d redis
+uygulama çalıştıktan sonra redis cli için: docker exec -it redisapp redis-cli komutu ile cli çalıştırılır.
+
+Spring Boot Redis
+-> Spring içinde kullanmak için data-redis dependency eklenir.
+-> RedisConfig oluşturulup içinde configurasyon ve redisTemplate instance eklenir. Konfigurasyonda localhost ve port belirtilir ve jedis config üretilir.
+-> RedisImpl içinde işi yapan metot ve cache temizleyen metot yazılır. Metot üzerinde Cacheable anotasyonu isim verilerek oluşturulur. 
+   CacheEvict anotsyonu isimli metot Cacheyi yazılan süre zarfına göre temizler.
+-> Tarayıcı üzerinde http://localhost:8085/redis/get request atıldığında ilk durum için 5sn içinde response ediliyor. Ama sonradan veriyi cache içinde aldığı için 1sn gibi bir sürede response ediliyor.
+
+Anlamak adına kaynak koldarı inceleyebilirsiniz.

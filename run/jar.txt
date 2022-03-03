@@ -1,0 +1,5 @@
+projeyi seç
+export
+java -> run jur
+yöl göster
+run
