@@ -1,5 +1,4 @@
-Bu projedeki amaç client-server yapısı üzerinde web socket test etmek ve multithreading kullanarak tek client üzerinden birden fazla kullanıcının
-server tarafına bağlanmasıdır.
+Bu projedeki amaç client-server yapısı üzerinde web socket test etmek ve multithreading yapısı ile client üzerinden birden fazla kullanıcının server tarafına bağlanmasıdır.
 
 Java swing ve jfarme komponentleri aracılığıyla client ve server geliştirildi.
 Client login ekranında host ve port bigileri girilerek server tarafına bağlantı sağlandı.
